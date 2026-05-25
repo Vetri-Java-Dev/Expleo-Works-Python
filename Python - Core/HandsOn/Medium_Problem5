@@ -3,9 +3,9 @@ num = int(input("Enter number: "))
 even_sum = 0
 odd_sum = 0
 
-while num > 0:
+while num>0:
 
-    digit = num % 10
+    digit=num % 10
 
     if digit % 2 == 0:
         even_sum = even_sum + digit
