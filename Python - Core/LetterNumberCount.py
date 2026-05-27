@@ -5,12 +5,13 @@ totalLetter=0;
 totalSymbol=0;
 
 for s in string:
+    
     if(s.isalpha()):
         totalLetter+=1
 
     elif(s.isnumeric()):
         totalNumber+=1
-        
+
     else:
         totalSymbol+=1
 
