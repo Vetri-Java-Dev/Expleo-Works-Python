@@ -1,46 +1,54 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
+def waitForElement(locator):
+    return wait.until(EC.visibility_of_element_located(locator))
+
+def waitForClickable(locator):
+    return wait.until(EC.element_to_be_clickable(locator))
+
+def jsClick(element):
+    driver.execute_script("arguments[0].click();",element)
 
 driver=webdriver.Chrome()
 driver.maximize_window()
 
+wait=WebDriverWait(driver, 15)
+
 driver.get("https://automationexercise.com/")
 
-header=driver.find_element(By.XPATH, "//*[@id='header']/div/div/div")
+header=waitForElement((By.XPATH, "//*[@id='header']/div/div/div"))
 
-if(header.is_displayed()):
+if (header.is_displayed()):
     print("Home displayed")
 else:
     print("Home not displayed")
 
-time.sleep(2)
+signupButton=waitForClickable((By.XPATH, "//*[@id='header']/div/div/div/div[2]/div/ul/li[4]/a"))
+jsClick(signupButton)
 
-signupButton=driver.find_element(By.XPATH,"//*[@id='header']/div/div/div/div[2]/div/ul/li[4]/a")
-signupButton.click()
+name=waitForElement((By.XPATH, "//*[@id='form']/div/div/div[3]/div/form/input[2]"))
 
-time.sleep(2)
+email=waitForElement((By.XPATH, "//*[@id='form']/div/div/div[3]/div/form/input[3]"))
 
-name=driver.find_element(By.XPATH,"//*[@id='form']/div/div/div[3]/div/form/input[2]")
-
-email=driver.find_element(By.XPATH,"//*[@id='form']/div/div/div[3]/div/form/input[3]")
-
-if(name.is_enabled()):
+if (name.is_enabled()):
     name.send_keys("Vetri")
-    email.send_keys("bvetrivel1@gmail.com6")
+    email.send_keys("bvetrivel1@gmail.com7")
 
-driver.find_element(By.XPATH,"//*[@id='form']/div/div/div[3]/div/form/button").click()
+signupCreateButton=waitForClickable((By.XPATH, "//*[@id='form']/div/div/div[3]/div/form/button"))
+jsClick(signupCreateButton)
 
-password=driver.find_element(By.XPATH,value="//*[@id='password']")
-
-firstName=driver.find_element(By.XPATH,value="//*[@id='first_name']")
-lastName=driver.find_element(By.XPATH,value="//*[@id='last_name']")
-
-state=driver.find_element(By.XPATH,value="//*[@id='state']")
-city=driver.find_element(By.XPATH,value="//*[@id='city']")
-zipCode=driver.find_element(By.XPATH,value="//*[@id='zipcode']")
-phone=driver.find_element(By.XPATH,value="//*[@id='mobile_number']")
-address=driver.find_element(By.XPATH,value="//*[@id='address1']")
+password=waitForElement((By.ID,"password"))
+firstName=waitForElement((By.ID,"first_name"))
+lastName=waitForElement((By.ID,"last_name"))
+state=waitForElement((By.ID,"state"))
+city=waitForElement((By.ID,"city"))
+zipCode=waitForElement((By.ID,"zipcode"))
+phone=waitForElement((By.ID,"mobile_number"))
+address=waitForElement((By.ID,"address1"))
 
 firstName.send_keys("Vetri")
 lastName.send_keys("B")
@@ -51,24 +59,27 @@ address.send_keys("Jothi school frontSide")
 zipCode.send_keys("636003")
 phone.send_keys("9677558855")
 
-driver.find_element(By.XPATH,value="//*[@id='form']/div/div/div/div[1]/form/button").click()
+createAccountButton = waitForClickable((By.XPATH, "//*[@id='form']/div/div/div/div[1]/form/button"))
+jsClick(createAccountButton)
 
-time.sleep(5)
+accountCreated = waitForElement((By.XPATH, "//b[text()='Account Created!']"))
 
-if(driver.find_element(By.XPATH, "//b[text() = \"Account Created!\"]").is_displayed()):
+if (accountCreated.is_displayed()):
     print("Account created.")
 else:
     print("Account didnt created.")
 
-driver.find_element(By.XPATH,value="//*[@id='form']/div/div/div/div/a").click()
+continueButton=waitForClickable((By.XPATH, "//*[@id='form']/div/div/div/div/a"))
+jsClick(continueButton)
 
-time.sleep(3)
-driver.find_element(By.XPATH,value="//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a").click()
+deleteButton=waitForClickable((By.XPATH, "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a"))
+jsClick(deleteButton)
 
-time.sleep(3)
-if(driver.find_element(By.XPATH, "//*[@id='form']/div/div/div/h2").is_displayed()):
+accountDeleted=waitForElement((By.XPATH, "//*[@id='form']/div/div/div/h2"))
+
+if (accountDeleted.is_displayed()):
     print("Account Deleted.")
 else:
     print("Account didnt Deleted.")
 
-
+driver.quit()

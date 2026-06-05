@@ -4,13 +4,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 try:
-    driver=webdriver.Chrome();
-    wait=WebDriverWait(driver, 10)
-    
+    driver = webdriver.Chrome();
+    wait = WebDriverWait(driver, 10)
+
     driver.maximize_window();
     driver.get("https://automationexercise.com/")
 
-    assert driver.title=="Automation Exercise", "Home page title mismatch"
+    assert driver.title == "Automation Exercise", "Home page title mismatch"
     print("Home page is reached.")
 
     driver.find_element(By.XPATH, "//a[@href = \"/login\"]").click()
@@ -18,19 +18,13 @@ try:
     
     print("Login text is verified")
     
-    wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@data-qa = \"login-email\"]"))).send_keys("vigneshwaran.coder@gmail.com4")
-    
+    wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@data-qa = \"login-email\"]"))).send_keys("vigneshwaran.coder@gmail.com5")
     driver.find_element(By.XPATH, "//input[@data-qa = \"login-password\"]").send_keys("1234")
     driver.find_element(By.XPATH, "//button[@data-qa = \"login-button\"]").click()
 
-    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//i/following-sibling::b"))).text == "Vignesh", "Cannot login"
+    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//p[text() = \"Your email or password is incorrect!\"]"))).text == "Your email or password is incorrect!", "Error Message is not displayed"
     
-    print("Login Successfull")
-    driver.find_element(By.XPATH, "//a[@href = \"/delete_account\"]").click()
-
-    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//b[text() = \"Account Deleted!\"]"))).is_displayed(), "Cannot delete account"
-    
-    print("Account deleted successfully.")
+    print("Error message is veridied")
     print("Test case passed.")
     
 except Exception as e:
