@@ -3,6 +3,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+def waitForElement(locator):
+    return wait.until(EC.visibility_of_element_located(locator))
+
+def waitForClickable(locator):
+    return wait.until(EC.element_to_be_clickable(locator))
+
+def jsClick(element):
+    driver.execute_script("arguments[0].click();",element)
+
 try:
     driver = webdriver.Chrome();
     wait = WebDriverWait(driver, 10)
@@ -14,17 +23,17 @@ try:
     
     print("Home page is reached.")
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@href = \"/login\"]"))).click()
+    jsClick(waitForClickable((By.XPATH, "//a[@href = \"/login\"]")))
 
-    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//h2[text() = \"New User Signup!\"]"))).is_displayed(), "Sign up message is not available."
+    assert waitForElement((By.XPATH, "//h2[text() = \"New User Signup!\"]")).is_displayed(), "Sign up message is not available."
     
     print("Sign up text is verified")
 
-    wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@name = \"name\"]"))).send_keys("Vignesh")
-    wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@data-qa = \"signup-email\"]"))).send_keys("vigneshwaran.coder@gmail.com4")
-    driver.find_element(By.XPATH,"//button[@data-qa = \"signup-button\"]").click()
+    waitForElement((By.XPATH, "//input[@name = \"name\"]")).send_keys("Vignesh")
+    waitForElement((By.XPATH, "//input[@data-qa = \"signup-email\"]")).send_keys("vigneshwaran.coder@gmail.com4")
+    jsClick(waitForClickable((By.XPATH,"//button[@data-qa = \"signup-button\"]")))
 
-    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//p[text() = \"Email Address already exist!\"]"))).is_displayed(), "Error message is not displayed."
+    assert waitForElement((By.XPATH, "//p[text() = \"Email Address already exist!\"]")).is_displayed(), "Error message is not displayed."
     
     print("Error message displayed.")
     print("Test case passed.")

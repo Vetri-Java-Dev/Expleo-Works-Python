@@ -46,7 +46,7 @@ try:
                 criticalCount+=1
                 alerts.append(line)
 
-    with open("./log_report.txt", "w") as file:
+    with open("log_report.txt", "w") as file:
 
         file.write(f"Total Lines : {totalLines}\n")
         file.write(f"Total Words : {totalWords}\n")

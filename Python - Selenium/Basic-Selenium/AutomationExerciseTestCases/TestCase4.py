@@ -3,6 +3,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+def waitForElement(locator):
+    return wait.until(EC.visibility_of_element_located(locator))
+
+def waitForClickable(locator):
+    return wait.until(EC.element_to_be_clickable(locator))
+
+def jsClick(element):
+    driver.execute_script("arguments[0].click();",element)
+
 try:
 
     driver = webdriver.Chrome();
@@ -14,21 +23,21 @@ try:
     assert driver.title == "Automation Exercise", "Home page title mismatch"
     print("Home page is reached.")
 
-    driver.find_element(By.XPATH, "//a[@href = \"/login\"]").click()
+    jsClick(waitForClickable((By.XPATH, "//a[@href = \"/login\"]")))
     
-    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//h2[text() = \"Login to your account\"]"))).is_displayed(), "Login page is not reached"
+    assert waitForElement((By.XPATH, "//h2[text() = \"Login to your account\"]")).is_displayed(), "Login page is not reached"
     
     print("Login text is verified")
-    wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@data-qa = \"login-email\"]"))).send_keys("vigneshwaran.coder@gmail.com4")
-    driver.find_element(By.XPATH, "//input[@data-qa = \"login-password\"]").send_keys("1234")
-    driver.find_element(By.XPATH, "//button[@data-qa = \"login-button\"]").click()
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("vigneshwaran.coder@gmail.com4")
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-password\"]")).send_keys("1234")
+    jsClick(waitForClickable((By.XPATH, "//button[@data-qa = \"login-button\"]")))
 
-    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//i/following-sibling::b"))).text == "Vignesh", "Cannot login"
+    assert waitForElement((By.XPATH, "//i/following-sibling::b")).text == "Vignesh", "Cannot login"
     
     print("Login Successfull")
-    driver.find_element(By.XPATH, "//a[@href = \"/logout\"]").click()
+    jsClick(waitForClickable((By.XPATH, "//a[@href = \"/logout\"]")))
 
-    assert wait.until(EC.visibility_of_element_located((By.XPATH, "//h2[text() = \"Login to your account\"]"))).is_displayed(), "Login page is not reached"
+    assert waitForElement((By.XPATH, "//h2[text() = \"Login to your account\"]")).is_displayed(), "Login page is not reached"
     print("Account logged out successfully.")
     print("Test case passed.")
     
@@ -38,4 +47,3 @@ except Exception as e:
 
 finally:
     driver.quit()
-

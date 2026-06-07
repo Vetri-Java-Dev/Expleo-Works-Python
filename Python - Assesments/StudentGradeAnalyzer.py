@@ -1,5 +1,6 @@
 try:
     studentMarks={
+
         "25MCA001": 77,
         "25MCA009": 60,
         "25MCA025": 99,
@@ -9,6 +10,7 @@ try:
         "25MCA032": 83,
         "25MCA018": 40,
         "25MCA014": 67
+
     }
 
     maxMarks=max(studentMarks.values())
@@ -62,7 +64,7 @@ try:
         if studentMarks[i]<(total/len(studentMarks)):
             belowAverage.append(i)
 
-    print("Below Average:", belowAverage)
+    print("Below Average : ", belowAverage)
 
     studentList=list(studentMarks.items())
 

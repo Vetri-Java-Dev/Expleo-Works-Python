@@ -20,7 +20,6 @@ def accept_trainee_records():
 
     return records
 
-
 def process_email_data(records):
     processedList=[]
 

@@ -27,7 +27,7 @@ for i in range(n):
 
 processedRecords=process_email_data(tuple(validRecords))
 
-print("\nFinal Processed Records")
+print("Final Processed Records")
 print("USN      Name      Username      Domain")
 
 for record in processedRecords:
