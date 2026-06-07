@@ -19,7 +19,7 @@ try:
     driver.maximize_window();
     driver.get("https://automationexercise.com/")
 
-    assert driver.title == "Automation Exercise", "Home page title mismatch"
+    assert driver.title=="Automation Exercise", "Home page title mismatch"
     print("Home page is reached.")
 
     jsClick(waitForClickable((By.XPATH, "//a[@href = \"/login\"]")))
@@ -27,8 +27,8 @@ try:
     
     print("Login text is verified")
     
-    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("vigneshwaran.coder@gmail.com5")
-    waitForElement((By.XPATH, "//input[@data-qa = \"login-password\"]")).send_keys("1234")
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("bvetrivel1@gmail.com7")
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-password\"]")).send_keys("Vetri@1234")
     jsClick(waitForClickable((By.XPATH, "//button[@data-qa = \"login-button\"]")))
 
     assert waitForElement((By.XPATH, "//p[text() = \"Your email or password is incorrect!\"]")).text == "Your email or password is incorrect!", "Error Message is not displayed"

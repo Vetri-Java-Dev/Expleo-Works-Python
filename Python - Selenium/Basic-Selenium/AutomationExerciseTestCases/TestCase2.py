@@ -27,12 +27,12 @@ try:
     
     print("Login text is verified")
     
-    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("vigneshwaran.coder@gmail.com4")
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("bvetrivel1@gmail.com")
     
-    waitForElement((By.XPATH, "//input[@data-qa = \"login-password\"]")).send_keys("1234")
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-password\"]")).send_keys("Vetri@1234")
     jsClick(waitForClickable((By.XPATH, "//button[@data-qa = \"login-button\"]")))
 
-    assert waitForElement((By.XPATH, "//i/following-sibling::b")).text == "Vignesh", "Cannot login"
+    assert waitForElement((By.XPATH, "//i/following-sibling::b")).text == "Vetri", "Cannot login"
     
     print("Login Successfull")
     jsClick(waitForClickable((By.XPATH, "//a[@href = \"/delete_account\"]")))
