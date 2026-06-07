@@ -30,7 +30,7 @@ try:
     print("Sign up text is verified")
 
     waitForElement((By.XPATH, "//input[@name = \"name\"]")).send_keys("Vetri")
-    waitForElement((By.XPATH, "//input[@data-qa = \"signup-email\"]")).send_keys("bvetrivel1@gmail.com7")
+    waitForElement((By.XPATH, "//input[@data-qa = \"signup-email\"]")).send_keys("bvetrivel1@gmail.com2")
     jsClick(waitForClickable((By.XPATH,"//button[@data-qa = \"signup-button\"]")))
 
     assert waitForElement((By.XPATH, "//p[text() = \"Email Address already exist!\"]")).is_displayed(), "Error message is not displayed."

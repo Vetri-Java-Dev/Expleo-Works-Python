@@ -27,7 +27,7 @@ try:
     
     print("Login text is verified")
     
-    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("bvetrivel1@gmail.com")
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("bvetrivel1@gmail.com1")
     
     waitForElement((By.XPATH, "//input[@data-qa = \"login-password\"]")).send_keys("Vetri@1234")
     jsClick(waitForClickable((By.XPATH, "//button[@data-qa = \"login-button\"]")))

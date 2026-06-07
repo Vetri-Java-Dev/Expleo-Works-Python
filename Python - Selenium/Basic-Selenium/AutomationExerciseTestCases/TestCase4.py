@@ -28,7 +28,7 @@ try:
     assert waitForElement((By.XPATH, "//h2[text() = \"Login to your account\"]")).is_displayed(), "Login page is not reached"
     
     print("Login text is verified")
-    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("bvetrivel1@gmail.com")
+    waitForElement((By.XPATH, "//input[@data-qa = \"login-email\"]")).send_keys("bvetrivel1@gmail.com2")
     waitForElement((By.XPATH, "//input[@data-qa = \"login-password\"]")).send_keys("Vetri@1234")
     jsClick(waitForClickable((By.XPATH, "//button[@data-qa = \"login-button\"]")))
 
