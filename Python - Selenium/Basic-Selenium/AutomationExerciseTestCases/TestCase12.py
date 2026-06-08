@@ -50,17 +50,15 @@ else:
 products=waitForClickable((By.XPATH,"//a[contains(text(),'Products')]"))
 click(products)
 
-
 assert waitForElement((By.XPATH,"//h2[contains(text(),'All Products')]")).is_displayed()
 
 elements=driver.find_elements(By.XPATH,"//*[@class='productinfo text-center']")
 
 for i in range(2):
 
-    elements = driver.find_elements(By.XPATH,"//*[@class='productinfo text-center']")
-    
-    moveToElementAndClick(elements[i].find_element(By.XPATH,".//a[contains(@class,'add-to-cart')]"))
+    addToCart = elements[i].find_element(By.XPATH,".//a[contains(@class,'add-to-cart')]")
 
+    jsClick(addToCart)
     continueShopping=waitForClickable((By.XPATH,"//*[@id='cartModal']//button"))
     jsClick(continueShopping)
 
@@ -70,5 +68,7 @@ cartElements=waitForElements((By.XPATH,"//*[contains(@id,'product-')]"))
 
 assert len(cartElements)==2
 print("Products added to cart succesfully")
+
+print("Test case successfully executed")
 
 driver.quit()
