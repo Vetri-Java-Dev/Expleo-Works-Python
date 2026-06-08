@@ -68,7 +68,6 @@ cartElements=waitForElements((By.XPATH,"//*[contains(@id,'product-')]"))
 
 assert len(cartElements)==2
 print("Products added to cart succesfully")
-
 print("Test case successfully executed")
 
 driver.quit()
