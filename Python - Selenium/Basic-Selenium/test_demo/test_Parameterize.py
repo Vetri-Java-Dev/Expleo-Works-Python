@@ -20,6 +20,7 @@ def test_search(search):
 
     driver.find_element(By.XPATH,"//*[@id='APjFqb']").send_keys(search)
 
+
 @pytest.mark.parametrize("Browser",["chrome","firefox"])
 @pytest.mark.parametrize("Url",["https://www.flipkart.com/","https://www.amazon.in/"])
 def test_URL(Browser, Url):

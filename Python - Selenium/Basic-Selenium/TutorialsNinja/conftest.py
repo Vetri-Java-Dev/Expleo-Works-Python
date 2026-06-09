@@ -1,20 +1,24 @@
-from selenium import webdriver
 import pytest
+from selenium import webdriver
+import ConfigReader
 
-
-@pytest.fixture(params=["Chrome","Edge"])
+@pytest.fixture(params=["Chrome"])
 def driver(request):
-    
-    if request.param == "Chrome":
+
+    browser=request.param
+
+    if browser == "Chrome":
         driver = webdriver.Chrome()
-    elif request.param == "Edge":
+
+    elif browser == "Edge":
         driver = webdriver.Edge()
 
     driver.maximize_window()
     driver.implicitly_wait(5)
 
-    driver.get("https://tutorialsninja.com/demo/")
     request.cls.driver = driver
+    driver.get(ConfigReader.getData("Basic info", "url"))
 
     yield driver
+
     driver.quit()

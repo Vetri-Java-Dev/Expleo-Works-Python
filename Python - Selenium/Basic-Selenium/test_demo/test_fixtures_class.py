@@ -1,34 +1,24 @@
 import pytest
-import time
-from selenium import webdriver
+import pytest_check as check
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
-@pytest.mark.usefixtures("setup_teardown")
-class TestSearch:
-    def test_validproduct(self):
+@pytest.mark.usefixtures("driver")
+class TestSearch :
+    def test_valid_product(self):
+        self.driver.find_element(By.XPATH, "//input[@name = 'search']").send_keys("HP")
+        self.driver.find_element(By.XPATH, "//input[@name = 'search']").send_keys(Keys.ENTER)
 
-        self.driver.find_element(By.NAME,"search").send_keys("HP")
-        self.driver.find_element(By.XPATH,"//button[contains(@class,'btn-default')]").click()
-        time.sleep(5)
+        check.is_true(self.soft_assert(self.assertTrue, self.driver.find_element(By.XPATH, "//a[text() = \"HP LP3065\"]").is_displayed()))
 
-        assert self.driver.find_element(By.LINK_TEXT,"HP LP3065").is_displayed()
-
-    def test_invalidproduct(self):
-
-        self.driver.find_element(By.NAME,"search").send_keys("Honda")
-        self.driver.find_element(By.XPATH,"//button[contains(@class,'btn-default')]").click()
-
-        expexted_text = "There is no product that matches the search criteria."
-        time.sleep(5)
-
-        assert self.driver.find_element(By.XPATH,"//input[@id='button-search']/following-sibling::p").text.__eq__(expexted_text)
-
-    def test_noproduct(self):
-
-        self.driver.find_element(By.NAME,"search").send_keys("")
-        self.driver.find_element(By.XPATH,"//button[contains(@class,'btn-default')]").click()
+    def test_invalid_product(self):
+        self.driver.find_element(By.XPATH, "//input[@name = 'search']").send_keys("Honda")
+        self.driver.find_element(By.XPATH, "//input[@name = 'search']").send_keys(Keys.ENTER)
         
-        time.sleep(5)
+        check.is_true(self.assertTrue, self.driver.find_element(By.XPATH, "//p[text() = \"There is no product that matches the search criteria.\"]").is_displayed())
+
+    def test_no_product(self):
+        self.driver.find_element(By.XPATH, "//input[@name = 'search']").send_keys("")
+        self.driver.find_element(By.XPATH, "//input[@name = 'search']").send_keys(Keys.ENTER)
         
-        expexted_text="There is no product that matches the search criteria."
-        assert self.driver.find_element(By.XPATH,"//input[@id='button-search']/following-sibling::p").text.__eq__(expexted_text)
+        check.is_true(self.assertTrue, self.driver.find_element(By.XPATH, "//p[text() = \"There is no product that matches the search criteria.\"]").is_displayed())
