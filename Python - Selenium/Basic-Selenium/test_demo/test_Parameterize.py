@@ -9,7 +9,6 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 import pytest
 import time
 
-
 @pytest.mark.search
 @pytest.mark.parametrize("search",[("springboot"),("selenium"),("django")])
 def test_search(search):
