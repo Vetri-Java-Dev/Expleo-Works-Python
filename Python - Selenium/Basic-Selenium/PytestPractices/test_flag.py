@@ -5,11 +5,11 @@ def test_Sample1():
 
 @pytest.mark.fail
 def test_Sample2():
-    assert 1+1==3,"2 needed"
+    assert 1+1==2,"2 needed"
 
 @pytest.mark.xfail()
 def test_Sample3():
-    assert "hi"=="hii"
+    assert "hi"=="hi"
 
 @pytest.mark.xfail()
 def test_Sample4():
