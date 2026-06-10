@@ -1,5 +1,6 @@
 from Actions.BaseActions import BaseActions
 from Pages.HomePage import HomePage
+from Pages.SearchPage import SearchPage
 
 class SearchActions(BaseActions):
 
@@ -10,7 +11,7 @@ class SearchActions(BaseActions):
         self.sendKeys(HomePage.searchField,key)
         self.click(HomePage.searchEnter)
     
-    def isProductDisplayed(self):
-        
+    def isProductDisplayed(self,key):
+        return self.find(SearchPage.result).is_displayed()
     
     
