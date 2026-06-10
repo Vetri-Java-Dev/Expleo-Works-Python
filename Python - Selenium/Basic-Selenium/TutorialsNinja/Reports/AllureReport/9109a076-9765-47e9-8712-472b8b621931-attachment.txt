@@ -1,0 +1,2 @@
+[32mINFO    [0m FrameworkLogger:login_test.py:26 bvetrivel@gmail.com Entered
+[32mINFO    [0m FrameworkLogger:login_test.py:35 Login Successful

@@ -1,0 +1,2 @@
+[32mINFO    [0m FrameworkLogger:login_test.py:51 vetri@gmail.com Entered
+[32mINFO    [0m FrameworkLogger:login_test.py:58 Error message shown Successful
