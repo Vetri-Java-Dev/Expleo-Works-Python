@@ -1,0 +1,12 @@
+2026-06-10 14:06:10,580 - INFO - Test starts
+2026-06-10 14:06:12,732 - INFO - {email} and {password} is entered
+2026-06-10 14:06:12,739 - INFO - Test case completed
+2026-06-10 14:06:21,660 - INFO - Test starts
+2026-06-10 14:06:26,718 - INFO - {email} and {password} is entered
+2026-06-10 14:06:26,741 - INFO - Test case completed
+2026-06-10 14:07:07,534 - INFO - Test starts
+2026-06-10 14:07:08,275 - INFO - bvetrivel@gmail.com and Vetri@1234 is entered
+2026-06-10 14:07:08,284 - INFO - Test case completed
+2026-06-10 14:07:15,544 - INFO - Test starts
+2026-06-10 14:07:16,403 - INFO - vetrivel1@gmail.com and Vetri@1234 is entered
+2026-06-10 14:07:16,412 - INFO - Test case completed

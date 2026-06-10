@@ -7,9 +7,9 @@ from Utilities.logger import get_logger
 
 @pytest.mark.usefixtures("setup")
 class TestLogin:
-    
 
-
+    #@pytest.mark.order(0)
+    @pytest.mark.dependency()
     @pytest.mark.parametrize("email,password",get_data("login_data.xlsx", "ValidLoginData"))
     def test_valid_login(self, email, password):
 
@@ -34,7 +34,8 @@ class TestLogin:
 
         logger.info("Login Successful")
 
-
+    #@pytest.mark.order(1)
+    @pytest.mark.dependency(depends=["test_valid_login"])
     @pytest.mark.parametrize("email,password,message",get_data("login_data.xlsx", "InvalidLoginData"))
     def test_invalid_login(self, email, password, message):
 
